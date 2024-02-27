@@ -8,14 +8,14 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) {
-        File file = new File("C:\\Users\\autologon\\Desktop\\defante.jpg");
+        File file = new File("C:\\Users\\eduar\\OneDrive\\Desktop\\pikachu.jpg");
 
         try {
             BufferedImage imagem = ImageIO.read(file);
             int largura = imagem.getWidth();
             int altura = imagem.getHeight();
-            System.out.println("Altura: " + altura);
             System.out.println("Largura " + largura);
+            System.out.println("Altura: " + altura);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
