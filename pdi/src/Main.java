@@ -16,6 +16,8 @@ public class Main {
             int altura = imagem.getHeight();
             System.out.println("Largura " + largura);
             System.out.println("Altura: " + altura);
+            int pegarRPG = imagem.getRGB(largura/2,altura/2);
+            System.out.println("pixel central cor: " + pegarRPG);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
