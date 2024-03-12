@@ -12,17 +12,14 @@ public class Main {
 
     public static void main(String[] args) {
 
-        File file = new File("C:\\Users\\eduar\\OneDrive\\Desktop\\imagem.jpg");
-
+        File file = new File("C:\\Users\\autologon\\Desktop\\imagem.jpg");
         BufferedImage imagem = null;
 
         try {imagem = ImageIO.read(file);}
         catch (IOException e) {
             throw new RuntimeException(e);
         }
-
         if (imagem != null){
-
 
             int largura = imagem.getWidth();
             int altura = imagem.getHeight();
@@ -33,14 +30,10 @@ public class Main {
 
             mudarImagem(imagem, altura, largura);
 
-
-            salvarImagem(imagem,"jpg","pokemon.jpg");
-
-
+            salvarImagem(imagem,"jpg","imagem.jpg");
 
             display(imagem);
         }
-
     }
 
     private static void mudarImagem(BufferedImage imagem, int altura, int largura) {
@@ -49,21 +42,26 @@ public class Main {
         Color cor3 = new Color(255,0,0);
 
         imagem.setRGB(0,0, cor1.getRGB());
-        imagem.setRGB(altura /2, largura /2,cor2.getRGB());
-        imagem.setRGB(altura -1, largura -1,cor3.getRGB());
-        for (int i = 0; i < altura; i++){
-            for (int j = 0; j < largura; j++){
+        imagem.setRGB(largura /2, altura /2,cor2.getRGB());
+        imagem.setRGB(largura -1, altura -1,cor3.getRGB());
+        BufferedImage imagemSaida = new BufferedImage(largura,altura,imagem.getType());
+
+        for (int i = 0; i < largura; i++){
+            for (int j = 0; j < altura; j++){
 
                 Color mudarCor = new Color(imagem.getRGB(i,j));
                 int vermelho = mudarCor.getRed();
                 int azul = mudarCor.getBlue();
                 int verde = mudarCor.getGreen();
-                imagem.setRGB(i,j,verde);
+                Color pintar = new Color(0,verde,0);
+                imagemSaida.setRGB(i,j,pintar.getRGB());
 
-                System.out.println(imagem.getRGB(i,j));
+                System.out.println(imagemSaida.getRGB(i,j));
+
 
             }
         }
+        display(imagemSaida);
     }
 
     private static void salvarImagem(BufferedImage imagem, String formato, String nomeImagem) {
