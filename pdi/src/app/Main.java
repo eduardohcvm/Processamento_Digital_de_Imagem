@@ -1,4 +1,6 @@
 package app;
+import app.app.ManipularImagem;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -19,14 +21,14 @@ public class Main {
         catch (IOException e) {
             throw new RuntimeException(e);
         }
-        OperacaoPontual.buscarDados(imagem);
-        ManipularImagem.mudarRGB(imagem, imagem.getHeight(), imagem.getWidth());
-        ManipularImagem.filtroNegativo(imagem, imagem.getHeight(), imagem.getWidth());
-        ManipularImagem.filtroCinza(imagem, imagem.getHeight(), imagem.getWidth(), "blue");
-        ManipularImagem.Binarizacao(imagem, imagem.getHeight(), imagem.getWidth(),200);
-        ManipularImagem.Tonalizacao(imagem, imagem.getHeight(), imagem.getWidth(),"green",100);
-        ManipularImagem.brilhoADD(imagem, imagem.getHeight(), imagem.getWidth(),-100);
-        ManipularImagem.brilhoMulti(imagem, imagem.getHeight(), imagem.getWidth(),1.7f);
+        app.OperacaoPontual.buscarDados(imagem);
+        //ManipularImagem.mudarRGB(imagem, imagem.getHeight(), imagem.getWidth());
+        //ManipularImagem.filtroNegativo(imagem, imagem.getHeight(), imagem.getWidth());
+       // ManipularImagem.filtroCinza(imagem, imagem.getHeight(), imagem.getWidth(), "red");
+       // ManipularImagem.Binarizacao(imagem, imagem.getHeight(), imagem.getWidth(),200);
+       // ManipularImagem.Tonalizacao(imagem, imagem.getHeight(), imagem.getWidth(),"blue",200);
+       // ManipularImagem.brilhoADD(imagem, imagem.getHeight(), imagem.getWidth(),100);
+       // ManipularImagem.brilhoMulti(imagem, imagem.getHeight(), imagem.getWidth(),1.9f);
     }
 
 }
