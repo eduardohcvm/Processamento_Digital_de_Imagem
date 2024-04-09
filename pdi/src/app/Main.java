@@ -32,6 +32,7 @@ public class Main {
 
         conversaoYIQ(imagem);
         conversaoYIQADD(imagem, 75.89);
+        conversaoYIQMULTI(imagem, 1.5);
     }
 
     private static void conversaoYIQ(BufferedImage imagem) {
@@ -46,6 +47,15 @@ public class Main {
         double matriz[][][] = new double[imagem.getHeight()][imagem.getWidth()][3];
         matriz = ConverterParaYIQ.rgbParaYiq(imagem);
         ManipularEmYIQ.brilhoADDemYIQ(matriz,tonalidade);
+        System.out.println(ConverterParaYIQ.retornarValorQ(matriz, 200,200));
+        BufferedImage image;
+        image = ConverterParaYIQ.yiqParaRgb(matriz);
+        OperacaoPontual.buscarDados(image);
+    }
+    private static void conversaoYIQMULTI(BufferedImage imagem, double tonalidade) {
+        double matriz[][][] = new double[imagem.getHeight()][imagem.getWidth()][3];
+        matriz = ConverterParaYIQ.rgbParaYiq(imagem);
+        ManipularEmYIQ.brilhoMULTIemYIQ(matriz,tonalidade);
         System.out.println(ConverterParaYIQ.retornarValorQ(matriz, 200,200));
         BufferedImage image;
         image = ConverterParaYIQ.yiqParaRgb(matriz);
