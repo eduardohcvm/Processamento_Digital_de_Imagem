@@ -26,7 +26,7 @@ public class ManipularImagem {
                 Color pintar = new Color(0,verde,0);
                 imagemSaida.setRGB(i,j,pintar.getRGB());
 
-                System.out.println(imagemSaida.getRGB(i,j));
+
             }
         }
         OperacaoPontual.display(imagemSaida);
@@ -45,7 +45,7 @@ public class ManipularImagem {
                 Color pintar = new Color(255 - vermelho,255 - verde,255 - azul);
                 imagemSaida.setRGB(i,j,pintar.getRGB());
 
-                System.out.println(imagemSaida.getRGB(i,j));
+
 
             }
         }
@@ -78,7 +78,6 @@ public class ManipularImagem {
                     novaCor = new Color(media,media,media);
                 }
 
-                imagemSaida.setRGB(i,j,novaCor.getRGB());
 
             }
         }
