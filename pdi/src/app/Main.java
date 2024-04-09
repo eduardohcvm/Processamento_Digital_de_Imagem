@@ -14,7 +14,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        File file = new File("C:\\Users\\eduar\\OneDrive\\Desktop\\pikachu.jpg");
+        File file = new File("C:\\Users\\eduar\\OneDrive\\Desktop\\imagem.jpg");
         BufferedImage imagem = null;
 
         try {imagem = ImageIO.read(file);}
@@ -22,21 +22,34 @@ public class Main {
             throw new RuntimeException(e);
         }
         app.OperacaoPontual.buscarDados(imagem);
-        ManipularImagem.mudarRGB(imagem, imagem.getHeight(), imagem.getWidth());
+        //ManipularImagem.mudarRGB(imagem, imagem.getHeight(), imagem.getWidth());
        // ManipularImagem.filtroNegativo(imagem, imagem.getHeight(), imagem.getWidth());
-        ManipularImagem.filtroCinza(imagem, imagem.getHeight(), imagem.getWidth(), "green");
+       // ManipularImagem.filtroCinza(imagem, imagem.getHeight(), imagem.getWidth(), "green");
        // ManipularImagem.Binarizacao(imagem, imagem.getHeight(), imagem.getWidth(),200);
        // ManipularImagem.Tonalizacao(imagem, imagem.getHeight(), imagem.getWidth(),"blue",200);
        // ManipularImagem.brilhoADD(imagem, imagem.getHeight(), imagem.getWidth(),100);
        // ManipularImagem.brilhoMulti(imagem, imagem.getHeight(), imagem.getWidth(),0.5f);
 
+        conversaoYIQ(imagem);
+        conversaoYIQADD(imagem, 75.89);
+    }
 
+    private static void conversaoYIQ(BufferedImage imagem) {
         double matriz[][][] = new double[imagem.getHeight()][imagem.getWidth()][3];
         matriz = ConverterParaYIQ.rgbParaYiq(imagem);
         System.out.println(ConverterParaYIQ.retornarValorQ(matriz, 200,200));
         BufferedImage image;
         image = ConverterParaYIQ.yiqParaRgb(matriz);
-        app.OperacaoPontual.buscarDados(image);
+        OperacaoPontual.buscarDados(image);
+    }
+    private static void conversaoYIQADD(BufferedImage imagem, double tonalidade) {
+        double matriz[][][] = new double[imagem.getHeight()][imagem.getWidth()][3];
+        matriz = ConverterParaYIQ.rgbParaYiq(imagem);
+        ManipularEmYIQ.brilhoADDemYIQ(matriz,tonalidade);
+        System.out.println(ConverterParaYIQ.retornarValorQ(matriz, 200,200));
+        BufferedImage image;
+        image = ConverterParaYIQ.yiqParaRgb(matriz);
+        OperacaoPontual.buscarDados(image);
     }
 
 }
