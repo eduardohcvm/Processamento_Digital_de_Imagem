@@ -1,9 +1,10 @@
-package app.app;
+package app;
 
 import app.OperacaoPontual;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.Objects;
 
 public class ManipularImagem {
     public static void mudarRGB(BufferedImage imagem, int altura, int largura) {
@@ -55,11 +56,11 @@ public class ManipularImagem {
 
         // calistenia --> clean code
         // early return
-        if (tipo != "red" && tipo != "green" && tipo != "blue" && tipo != "media" ){
+        if (!Objects.equals(tipo, "red") && !Objects.equals(tipo, "green") && !Objects.equals(tipo, "blue") && !Objects.equals(tipo, "media")){
             throw new RuntimeException("Tipo invalido");
         }
 
-        BufferedImage imagemSaida = new BufferedImage(largura,altura,imagem.getType());
+        BufferedImage imagemSaida = new BufferedImage(altura,largura,imagem.getType());
 
         for (int i = 0; i < largura; i++){
             for (int j = 0; j < altura; j++){

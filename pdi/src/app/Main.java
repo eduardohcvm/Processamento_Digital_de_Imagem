@@ -1,5 +1,5 @@
 package app;
-import app.app.ManipularImagem;
+import app.ManipularImagem;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -14,7 +14,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        File file = new File("C:\\Users\\eduar\\OneDrive\\Desktop\\imagem.jpg");
+        File file = new File("C:\\Users\\eduar\\OneDrive\\Desktop\\pikachu.jpg");
         BufferedImage imagem = null;
 
         try {imagem = ImageIO.read(file);}
@@ -23,16 +23,20 @@ public class Main {
         }
         app.OperacaoPontual.buscarDados(imagem);
         ManipularImagem.mudarRGB(imagem, imagem.getHeight(), imagem.getWidth());
-        //ManipularImagem.filtroNegativo(imagem, imagem.getHeight(), imagem.getWidth());
-       // ManipularImagem.filtroCinza(imagem, imagem.getHeight(), imagem.getWidth(), "red");
+       // ManipularImagem.filtroNegativo(imagem, imagem.getHeight(), imagem.getWidth());
+        ManipularImagem.filtroCinza(imagem, imagem.getHeight(), imagem.getWidth(), "green");
        // ManipularImagem.Binarizacao(imagem, imagem.getHeight(), imagem.getWidth(),200);
        // ManipularImagem.Tonalizacao(imagem, imagem.getHeight(), imagem.getWidth(),"blue",200);
        // ManipularImagem.brilhoADD(imagem, imagem.getHeight(), imagem.getWidth(),100);
        // ManipularImagem.brilhoMulti(imagem, imagem.getHeight(), imagem.getWidth(),0.5f);
+
+
         double matriz[][][] = new double[imagem.getHeight()][imagem.getWidth()][3];
-        System.out.println(matriz);
         matriz = ConverterParaYIQ.rgbParaYiq(imagem);
-        System.out.println(matriz[1][2][2]);
+        System.out.println(ConverterParaYIQ.retornarValorQ(matriz, 200,200));
+        BufferedImage image;
+        image = ConverterParaYIQ.yiqParaRgb(matriz);
+        app.OperacaoPontual.buscarDados(image);
     }
 
 }
