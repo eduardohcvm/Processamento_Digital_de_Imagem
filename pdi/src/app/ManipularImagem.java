@@ -60,7 +60,7 @@ public class ManipularImagem {
             throw new RuntimeException("Tipo invalido");
         }
 
-        BufferedImage imagemSaida = new BufferedImage(altura,largura,imagem.getType());
+        BufferedImage imagemSaida = new BufferedImage(largura,altura,imagem.getType());
 
         for (int i = 0; i < largura; i++){
             for (int j = 0; j < altura; j++){
@@ -69,16 +69,11 @@ public class ManipularImagem {
                 int vermelho = mudarCor.getRed();
                 int azul = mudarCor.getBlue();
                 int verde = mudarCor.getGreen();
+                int media = (vermelho + azul + verde) / 3;
+                Color pintar = new Color(media,media,media);
+                imagemSaida.setRGB(i,j,pintar.getRGB());
 
-                Color novaCor = null;
-                if (tipo.equalsIgnoreCase("red"))novaCor = new Color(vermelho,vermelho,vermelho);
-                else if (tipo.equalsIgnoreCase("green"))novaCor = new Color(verde,verde,verde);
-                else if (tipo.equalsIgnoreCase("blue"))novaCor = new Color(azul,azul,azul);
-                else {
-                    int media = (vermelho + azul + verde) / 3;
-                    novaCor = new Color(media,media,media);
-                }
-
+                System.out.println(imagemSaida.getRGB(i,j));
 
             }
         }

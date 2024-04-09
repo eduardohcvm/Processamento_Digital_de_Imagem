@@ -19,19 +19,19 @@ public class ConverterParaYIQ {
     }
 
     public  static double retornarValorQ(double[][][] matriz, int h, int w){
-      return matriz[h][w][2];
+      return matriz[w][h][2];
     }
 
 
     public static BufferedImage yiqParaRgb(double[][][] matriz) {
-        int width = matriz[0].length;
-        int height = matriz.length;
+        int width = matriz.length;  // Obtendo a largura da matriz
+        int height = matriz[0].length;  // Obtendo a altura da matriz
         BufferedImage imagem = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-        for (int h = 0; h < height; h++) {
-            for (int w = 0; w < width; w++) {
-                int red = (int) ((int) (matriz[h][w][0] * 1) + (matriz[h][w][1] * 0.956) + (matriz[h][w][2] * 0.621));
-                int green = (int) ((int) (matriz[h][w][0] * 1) + (matriz[h][w][1] * -0.272) + (matriz[h][w][2] * -0.647));
-                int blue = (int) ((int) (matriz[h][w][0] * 1) + (matriz[h][w][1] * -1.106) + (matriz[h][w][2] * 1.703));
+        for (int h = 0; h < height; h++) {  // Iterando sobre as linhas (altura)
+            for (int w = 0; w < width; w++) {  // Iterando sobre as colunas (largura)
+                int red = (int) ((int) (matriz[w][h][0] * 1) + (matriz[w][h][1] * 0.956) + (matriz[w][h][2] * 0.621));
+                int green = (int) ((int) (matriz[w][h][0] * 1) + (matriz[w][h][1] * -0.272) + (matriz[w][h][2] * -0.647));
+                int blue = (int) ((int) (matriz[w][h][0] * 1) + (matriz[w][h][1] * -1.106) + (matriz[w][h][2] * 1.703));
                 red = Math.min(Math.max(red, 0), 255);
                 green = Math.min(Math.max(green, 0), 255);
                 blue = Math.min(Math.max(blue, 0), 255);
