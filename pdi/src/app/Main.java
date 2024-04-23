@@ -25,17 +25,20 @@ public class Main {
             throw new RuntimeException(e);
         }
         app.OperacaoPontual.buscarDados(imagem);
+
         //ManipularImagem.mudarRGB(imagem, imagem.getHeight(), imagem.getWidth());
-       // ManipularImagem.filtroNegativo(imagem, imagem.getHeight(), imagem.getWidth());
-       // ManipularImagem.filtroCinza(imagem, imagem.getHeight(), imagem.getWidth(), "green");
-       // ManipularImagem.Binarizacao(imagem, imagem.getHeight(), imagem.getWidth(),200);
-       // ManipularImagem.Tonalizacao(imagem, imagem.getHeight(), imagem.getWidth(),"blue",200);
+        //ManipularImagem.filtroNegativo(imagem, imagem.getHeight(), imagem.getWidth());
+        //ManipularImagem.filtroCinza(imagem, imagem.getHeight(), imagem.getWidth(), "green");
+        //ManipularImagem.Binarizacao(imagem, imagem.getHeight(), imagem.getWidth(),200);
+        ManipularImagem.Tonalizacao(imagem, imagem.getHeight(), imagem.getWidth(),"blue",200);
        // ManipularImagem.brilhoADD(imagem, imagem.getHeight(), imagem.getWidth(),100);
        // ManipularImagem.brilhoMulti(imagem, imagem.getHeight(), imagem.getWidth(),0.5f);
 
-        conversaoYIQ(imagem);
-        conversaoYIQADD(imagem, 75.89);
-        conversaoYIQMULTI(imagem, 1.5);
+        //conversaoYIQ(imagem);
+//        conversaoYIQADD(imagem, 75.89);
+//        conversaoYIQMULTI(imagem, 1.5);
+        OperacoesLocais.mediaMatriz3x3(imagem);
+        OperacoesLocais.convolucao(imagem, kernelVertical);
     }
 
     private static void conversaoYIQ(BufferedImage imagem) {
