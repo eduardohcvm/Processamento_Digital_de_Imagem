@@ -16,7 +16,10 @@ public class Main {
 
         File file = new File("C:\\Users\\eduar\\OneDrive\\Desktop\\imagem.jpg");
         BufferedImage imagem = null;
-
+         int [] kernelHorizontal = {-1,-2,-1,0,0,0,1,2,1};
+        int [] kernelVertical = {-1,0,1,-2,0,2,-1,0,-1};
+        int[] kernelLinhasOeste = { 1,1,-1,1,-2,-1,1,1,1};
+        
         try {imagem = ImageIO.read(file);}
         catch (IOException e) {
             throw new RuntimeException(e);
