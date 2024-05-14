@@ -4,6 +4,8 @@ import app.OperacaoPontual;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class ManipularImagem {
@@ -60,6 +62,7 @@ public class ManipularImagem {
             throw new RuntimeException("Tipo invalido");
         }
 
+
         BufferedImage imagemSaida = new BufferedImage(largura,altura,imagem.getType());
 
         for (int i = 0; i < largura; i++){
@@ -76,6 +79,41 @@ public class ManipularImagem {
                 System.out.println(imagemSaida.getRGB(i,j));
 
             }
+        }
+        OperacaoPontual.display(imagemSaida);
+    }
+    public static void filtroCinzaMedio(BufferedImage imagem, int altura, int largura) {
+
+        BufferedImage imagemSaida = new BufferedImage(largura,altura,imagem.getType());
+
+        int contador0 = 0;
+        int contador100 = 0;
+        int contador200 = 0;
+        int contador250 = 0;
+        int[] arrayCores = new int[256];
+
+        for (int i = 0; i < largura; i++){
+            for (int j = 0; j < altura; j++){
+
+                Color mudarCor = new Color(imagem.getRGB(i,j));
+                int vermelho = mudarCor.getRed();
+                int azul = mudarCor.getBlue();
+                int verde = mudarCor.getGreen();
+                int media = (vermelho + azul + verde) / 3;
+                Color pintar = new Color(media,media,media);
+                ++arrayCores[media];
+                if (media == 0) contador0++;
+                if (media == 100) contador100++;
+                if (media == 200) contador200++;
+                if (media == 250) contador250++;
+                imagemSaida.setRGB(i,j,pintar.getRGB());
+
+            }
+        }
+        System.out.println("total de pixeis 0 = " + contador0 + " total de pixeis 100 = " + contador100 +
+                " total de pixeis 200 = " + contador200 + " total de pixeis 250 = " + contador250);
+        for (int i = 0; i < arrayCores.length; i++) {
+            System.out.println("Total de pixeis com a cor de cinza " + i + " = " + arrayCores[i]);
         }
         OperacaoPontual.display(imagemSaida);
     }
